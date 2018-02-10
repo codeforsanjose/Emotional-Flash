@@ -3,6 +3,8 @@ import CardGallery from './card-gallery';
 
 export default class EmotionalFlash extends Component {
 
+	//Emotional Flash is the component that displays the game 
+	//Emotional Flash Game.
 
   render() {
     return (
