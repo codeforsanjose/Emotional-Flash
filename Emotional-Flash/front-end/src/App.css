@@ -16,7 +16,8 @@
 }
 
 .card > img:hover{
-	opacity: .7;
+	opacity: .85;
 	cursor: pointer;
 	border-style: solid;
+	border-color: lightblue;
 }
