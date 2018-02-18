@@ -1,2 +1,0 @@
-# Emotional Flash
-
