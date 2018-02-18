@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 50px;
 }
 
 .card-gallery{
@@ -9,10 +10,15 @@
 
 }
 
+.card{
+	border-radius: 5px;
+	margin: 20px;
+}
+
 .card > img{
   width: 220px;
   height: 200px;
-  margin: 10px 5px 10px 5px;
+  margin-bottom: -10px;
 }
 
 .card > img:hover{
@@ -20,4 +26,19 @@
 	cursor: pointer;
 	border-style: solid;
 	border-color: lightblue;
+}
+
+.level-left{
+	margin-left: 100px;
+}
+.level-right{
+	margin-right: 100px;
+}
+
+.level{
+	background-color: #f0f0f0;
+	width: 100%;
+	height: 100px;
+	position: fixed;
+	bottom: 0;
 }

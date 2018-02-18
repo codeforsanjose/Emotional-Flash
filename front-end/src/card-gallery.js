@@ -8,6 +8,7 @@ import HappyPicture from './assets/happy1.jpg';
 
 export default class CardGallery extends Component {
 
+// Card gallery holds the three card options. No logic implemented yet.
   render() {
     return (
       <div className="card-gallery">
