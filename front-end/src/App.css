@@ -7,7 +7,6 @@
 
 .card-gallery{
   display: flex;
-
 }
 
 .card{
@@ -29,10 +28,10 @@
 }
 
 .level-left{
-	margin-left: 100px;
+	margin-left: 10%;
 }
 .level-right{
-	margin-right: 100px;
+	margin-right: 10%;
 }
 
 .level{
