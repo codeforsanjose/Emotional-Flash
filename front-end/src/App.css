@@ -1,3 +1,7 @@
+.app{
+	background-color: #cccccc;
+}
+
 .emotional-flash{
 	display: flex;
 	flex-direction: column;
@@ -28,16 +32,16 @@
 }
 
 .level-left{
-	margin-left: 10%;
+	margin-left: 14%;
 }
 .level-right{
-	margin-right: 10%;
+	margin-right: 14%;
 }
 
 .level{
 	background-color: #f0f0f0;
 	width: 100%;
-	height: 100px;
+	height: 120px;
 	position: fixed;
 	bottom: 0;
 }

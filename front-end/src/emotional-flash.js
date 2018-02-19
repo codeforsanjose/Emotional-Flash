@@ -10,6 +10,7 @@ export default class EmotionalFlash extends Component {
     this.state = {
       quizQuestion: '',
       questionAnswer: '',
+      whichCardIsSelected: null, 
       isCorrect: null
     }
   }
@@ -22,18 +23,21 @@ export default class EmotionalFlash extends Component {
             <button className="button is-dark is-medium is-rounded is-outlined">Skip</button>
           </div>
           <div className="level-right">
-            <button className="button is-success is-medium is-rounded">Check</button>
+            <button className="button is-success is-medium is-rounded" onClick={this.checkAnswer}>Check</button>
           </div>
         </nav>
       );
 
     }
     if (this.state.isCorrect === true){
-
+      this.state.questionAnswer
     }
     if (this.state.isCorrect === false){
-
     }
+  }
+
+  selectCard = (key) => {
+    this.setState({ whichCardIsSelected: key });
   }
 
   generateQuestion(){
@@ -58,7 +62,7 @@ export default class EmotionalFlash extends Component {
       <div className="emotional-flash">
         <progress style={{ width: '75%' }} className="progress is-success is-large" value={this.props.user.progress} max="100"></progress>
       	<h1 className="title">{this.state.quizQuestion}</h1>
-      	<CardGallery />
+      	<CardGallery whichCardIsSelected={this.state.whichCardIsSelected} selectCard={this.selectCard} />
         {this.renderFooterBar()}
       </div>
     );

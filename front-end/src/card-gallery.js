@@ -14,16 +14,16 @@ export default class CardGallery extends Component {
 constructor(props){
 	super(props);
 	this.state = {
-		whichCardIsSelected: null, // 0: first card, 1: second card, 2: third card
 		happyPictures: [HappyPicture1, HappyPicture2],
 		sadPictures: [SadPicture1, SadPicture2],
-		angryPictures: [AngryPicture1, AngryPicture2]
+		angryPictures: [AngryPicture1, AngryPicture2],
+		cardGallery: [],
 	}
 }	
 
-// Randomizes card pictures as well as the order they appear in the cardGallery, returns Card elements to display.
-renderCardSection = () => {
-	const { happyPictures, sadPictures, angryPictures, whichCardIsSelected} = this.state;
+
+randomizeCards = () => {
+	const { happyPictures, sadPictures, angryPictures} = this.state;
 	// Choose a random happy, sad, and angry picture from the arrays.
 	const happyPicture = {
 		picture: happyPictures[Math.floor((Math.random() * happyPictures.length))], 
@@ -46,31 +46,38 @@ renderCardSection = () => {
         pictureArray[i] = pictureArray[j];
         pictureArray[j] = temp;
     }
+    this.setState({ cardGallery: pictureArray });
+}
 
-    return pictureArray.map((item, index) => {
-    	if (index === whichCardIsSelected){
+componentWillMount(){
+	this.randomizeCards();
+}
+
+// Randomizes card pictures as well as the order they appear in the cardGallery, returns Card elements to display.
+renderCardSection = () => {
+    return this.state.cardGallery.map((item, index) => {
+    	if (index === this.props.whichCardIsSelected){
 	    	return (<Card key={index} 
+	    		  id={index}
 	    		  img={item.picture}
 	    		  type={item.type}
-	    		  selectCard={this.selectCard}
+	    		  selectCard={this.props.selectCard}
 	    		  isSelected={true}
 	    	/>)
 	    }
 	    else{
 	    	return (<Card key={index} 
+	    		  id={index}
 	    		  img={item.picture}
 	    		  type={item.type}
-	    		  selectCard={this.selectCard}
+	    		  selectCard={this.props.selectCard}
 	    		  isSelected={false}
 	    	/>)
 	    }
-    }
-    );
+    });
 }
 
-selectCard = (key) => {
-	this.setState({ whichCardIsSelected: key });
-}
+
 
 // Card gallery holds the three card options. No logic implemented yet.
  render() {
