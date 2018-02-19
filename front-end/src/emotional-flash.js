@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import CardGallery from './card-gallery';
+import SadPicture1 from './assets/sad/sad1.jpg';
+import SadPicture2 from './assets/sad/sad2.jpg';
+import HappyPicture1 from './assets/happy/happy1.jpg';
+import HappyPicture2 from './assets/happy/happy2.jpg';
+import AngryPicture1 from './assets/angry/angry1.jpg';
+import AngryPicture2 from './assets/angry/angry2.jpg';
+
 
 export default class EmotionalFlash extends Component {
 
@@ -11,8 +18,40 @@ export default class EmotionalFlash extends Component {
       quizQuestion: '',
       questionAnswer: '',
       whichCardIsSelected: null, 
-      isCorrect: null
+      isCorrect: null,
+      cardGallery: [],
+
     }
+  }
+
+  randomizeCards = () => {
+      const happyPictures = [HappyPicture1, HappyPicture2]; //hardcoded pictures array
+      const sadPictures = [SadPicture1, SadPicture2];       // hardcoded pictures array
+      const angryPictures = [AngryPicture1, AngryPicture2]; // hardcoded pictures array
+      console.log("hello");
+      // Choose a random happy, sad, and angry picture from the arrays.
+      const happyPicture = {
+        picture: happyPictures[Math.floor((Math.random() * happyPictures.length))], 
+        type: 'happy'
+      }
+      const sadPicture = {
+        picture: sadPictures[Math.floor((Math.random() * sadPictures.length))],
+        type: 'sad'
+      }
+      const angryPicture = {
+        picture: angryPictures[Math.floor((Math.random() * angryPictures.length))],
+        type: 'angry'
+      }
+      const pictureArray = [happyPicture, sadPicture, angryPicture];
+
+      // Algorithm to shuffle the pictureArray
+        for (var i = pictureArray.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = pictureArray[i];
+            pictureArray[i] = pictureArray[j];
+            pictureArray[j] = temp;
+        }
+        this.setState({ cardGallery: pictureArray });
   }
 
   renderFooterBar = () => {
@@ -76,22 +115,27 @@ export default class EmotionalFlash extends Component {
   generateQuestion = () => {
     const selector = Math.floor((Math.random() * 3) + 1); // Generate a random number between 1 and 3.
     if (selector === 1){
-      this.setState({ quizQuestion: "Select the emotion for 'Happy'", questionAnswer: 'happy'});
+      this.setState({ quizQuestion: "Select the emotion for 'Happy'", questionAnswer: 'happy', isCorrect: null});
     }
     if (selector === 2){
-      this.setState({ quizQuestion: "Select the emotion for 'Sad'", questionAnswer: 'sad'});
+      this.setState({ quizQuestion: "Select the emotion for 'Sad'", questionAnswer: 'sad', isCorrect: null});
     }
     if (selector === 3){
-      this.setState({ quizQuestion: "Select the emotion for 'Angry'", questionAnswer: 'angry'});
+      this.setState({ quizQuestion: "Select the emotion for 'Angry'", questionAnswer: 'angry', isCorrect: null});
     }
   }
 
   reset = () => {
     this.generateQuestion();
-  }
+    this.randomizeCards(); 
+    this.setState({
+      whichCardIsSelected: null
+    })
+ }
 
   componentWillMount(){
     this.generateQuestion();
+    this.randomizeCards();
   }
 
   render() {
@@ -99,7 +143,7 @@ export default class EmotionalFlash extends Component {
       <div className="emotional-flash">
         <progress style={{ width: '75%' }} className="progress is-success is-large" value={this.props.user.progress} max="100"></progress>
       	<h1 className="title">{this.state.quizQuestion}</h1>
-      	<CardGallery whichCardIsSelected={this.state.whichCardIsSelected} selectCard={this.selectCard} />
+      	<CardGallery whichCardIsSelected={this.state.whichCardIsSelected} selectCard={this.selectCard} cardGallery={this.state.cardGallery}/>
         {this.renderFooterBar()}
       </div>
     );
