@@ -56,7 +56,7 @@ componentWillMount(){
 // Randomizes card pictures as well as the order they appear in the cardGallery, returns Card elements to display.
 renderCardSection = () => {
     return this.state.cardGallery.map((item, index) => {
-    	if (index === this.props.whichCardIsSelected){
+    	if (item.type === this.props.whichCardIsSelected){
 	    	return (<Card key={index} 
 	    		  id={index}
 	    		  img={item.picture}

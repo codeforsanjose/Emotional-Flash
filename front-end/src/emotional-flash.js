@@ -20,7 +20,7 @@ export default class EmotionalFlash extends Component {
       return (
         <nav className="level">
           <div className="level-left">
-            <button className="button is-dark is-medium is-rounded is-outlined">Skip</button>
+            <button className="button is-dark is-medium is-rounded is-outlined" onClick={this.checkAnswer}>Skip</button>
           </div>
           <div className="level-right">
             <button className="button is-success is-medium is-rounded" onClick={this.checkAnswer}>Check</button>
@@ -30,9 +30,30 @@ export default class EmotionalFlash extends Component {
 
     }
     if (this.state.isCorrect === true){
-      this.state.questionAnswer
+      let style = { backgroundColor: '#bff199' };
+        return (
+        <nav style={style} className="level">
+          <div className="level-left">
+            <h1 style={{ color: '#23d160'}} class="title">You are correct!</h1>
+          </div>
+          <div className="level-right">
+            <button className="button is-success is-medium is-rounded" onClick={this.reset}>Continue</button>
+          </div>
+        </nav>
+        )
     }
     if (this.state.isCorrect === false){
+      let style = { backgroundColor: '#ffd3d1' };
+      return (
+        <nav style={style} className="level">
+          <div className="level-left">
+            <h1 style={{ color: '#ff3860'}} class="title">Incorrect</h1>
+          </div>
+          <div className="level-right">
+            <button className="button is-danger is-medium is-rounded" onClick={this.reset}>Continue</button>
+          </div>
+        </nav>
+      )
     }
   }
 
@@ -40,7 +61,19 @@ export default class EmotionalFlash extends Component {
     this.setState({ whichCardIsSelected: key });
   }
 
-  generateQuestion(){
+  checkAnswer = () => {
+    if (this.state.whichCardIsSelected === this.state.questionAnswer){
+      // todo more stuff
+      this.props.updateProgress(10);
+      this.setState({ isCorrect: true });
+    }
+    else{
+      this.props.updateProgress(-10);
+      this.setState({ isCorrect: false });
+    }
+  }
+
+  generateQuestion = () => {
     const selector = Math.floor((Math.random() * 3) + 1); // Generate a random number between 1 and 3.
     if (selector === 1){
       this.setState({ quizQuestion: "Select the emotion for 'Happy'", questionAnswer: 'happy'});
@@ -51,6 +84,10 @@ export default class EmotionalFlash extends Component {
     if (selector === 3){
       this.setState({ quizQuestion: "Select the emotion for 'Angry'", questionAnswer: 'angry'});
     }
+  }
+
+  reset = () => {
+    this.generateQuestion();
   }
 
   componentWillMount(){

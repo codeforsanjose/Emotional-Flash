@@ -12,11 +12,11 @@ export default class App extends Component {
     };
   }
 
-  updateProgress(){
+  updateProgress = (value) => {
     this.setState({
-      userid: {
-        userid: this.state.userid,
-        progress: this.state.user.progress + 10,
+      user: {
+        user: this.state.user.userid,
+        progress: this.state.user.progress + value,
       }
     })
   }

@@ -8,7 +8,7 @@ export default class Card extends Component {
 	// a card represent one of the three options to choose from. Usually holds an image.
 
 	handleClick = () => {
-		this.props.selectCard(this.props.id);
+		this.props.selectCard(this.props.type);
 	}
 
 	render() {
