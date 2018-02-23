@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import EmotionalFlash from './emotional-flash.js';
 import './App.css';
 import 'bulma/css/bulma.css'
-import SadPicture1 from './assets/sad/sad1.jpg';
-import SadPicture2 from './assets/sad/sad2.jpg';
-import HappyPicture1 from './assets/happy/happy1.jpg';
-import HappyPicture2 from './assets/happy/happy2.jpg';
-import AngryPicture1 from './assets/angry/angry1.jpg';
-import AngryPicture2 from './assets/angry/angry2.jpg';
-
-
 
 export default class App extends Component {
   constructor(props){

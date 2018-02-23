@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Card from './card';
-// Hardcoded Pictures. TODO: Make Request to backend instead.
-
 
 export default class CardGallery extends Component {
 

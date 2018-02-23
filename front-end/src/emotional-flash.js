@@ -6,12 +6,12 @@ import HappyPicture1 from './assets/happy/happy1.jpg';
 import HappyPicture2 from './assets/happy/happy2.jpg';
 import AngryPicture1 from './assets/angry/angry1.jpg';
 import AngryPicture2 from './assets/angry/angry2.jpg';
+// Hardcoded Pictures. TODO: Make Request to backend instead.
 
 
 export default class EmotionalFlash extends Component {
 
-	//Emotional Flash is the component that displays the game 
-	//Emotional Flash Game.
+	//Emotional Flash is the component that displays the game and handles logic.
   constructor(props){
     super(props);
     this.state = {
@@ -20,7 +20,6 @@ export default class EmotionalFlash extends Component {
       whichCardIsSelected: null, 
       isCorrect: null,
       cardGallery: [],
-
     }
   }
 
@@ -29,7 +28,7 @@ export default class EmotionalFlash extends Component {
       const sadPictures = [SadPicture1, SadPicture2];       // hardcoded pictures array
       const angryPictures = [AngryPicture1, AngryPicture2]; // hardcoded pictures array
       console.log("hello");
-      // Choose a random happy, sad, and angry picture from the arrays.
+      // Choose a random happy, sad, and angry picture from the arrays of pictures.
       const happyPicture = {
         picture: happyPictures[Math.floor((Math.random() * happyPictures.length))], 
         type: 'happy'
@@ -51,9 +50,10 @@ export default class EmotionalFlash extends Component {
             pictureArray[i] = pictureArray[j];
             pictureArray[j] = temp;
         }
-        this.setState({ cardGallery: pictureArray });
+        
+      this.setState({ cardGallery: pictureArray });
   }
-
+  
   renderFooterBar = () => {
     if (this.state.isCorrect === null){
       return (
