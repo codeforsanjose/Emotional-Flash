@@ -1,15 +1,15 @@
 
 import React, { Component } from 'react';
 
-export default class HomePage extends Component {
+export default class LogIn extends Component {
 	constructor(props){
 		super(props);
 	}
 	
 	render() {
 		return (
-		  <div className="home-page" >
-		  Homepage
+		  <div className="login" >
+		  	todo: login
 		  </div>
 		);
 	}
