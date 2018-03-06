@@ -23,7 +23,7 @@ export default class App extends Component {
       }
       this.setState({
         user: {
-          user: this.state.user.userid,
+          userid: this.state.user.userid,
           progress: this.state.user.progress + value,
         }
       })
