@@ -9,6 +9,10 @@
 	margin-top: 50px;
 }
 
+.home-page{
+	margin: 50px 20px 50px 20px;
+}
+
 .card-gallery{
   display: flex;
 }
@@ -44,4 +48,35 @@
 	height: 120px;
 	position: fixed;
 	bottom: 0;
+}
+
+.active{
+	border-radius: 100px;
+	padding: 5px 10px 5px 10px;
+	background-color: #1182bb;
+}
+
+.navbar-item{
+	font-size: 18px;
+}
+
+.nav-link{
+	color: white;
+	margin-right: 14px;
+}
+.nav-brand{
+	font-weight: 900;
+	font-size: 18px;
+}
+
+.categories{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.category-button{
+	margin: 45px 15px 15px 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }

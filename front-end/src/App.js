@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import EmotionalFlash from './emotional-flash.js';
+import HomePage from './homepage.js';
 import './App.css';
 import 'bulma/css/bulma.css'
+import Nav from './nav.js';
+var ReactRouter = require('react-router-dom');
+var Router = ReactRouter.BrowserRouter;
+var Route = ReactRouter.Route;
+
 
 export default class App extends Component {
   constructor(props){
@@ -23,11 +29,18 @@ export default class App extends Component {
       })
   }
 
+//  <Route path="/EmotionalFlash" render={()=><EmotionalFlash user={this.state.user} updateProgress={this.updateProgress} />} />
+
   render() {
     return (
-      <div className="App">
-        <EmotionalFlash user={this.state.user} updateProgress={this.updateProgress}/>
-      </div>
+        <Router>
+          <div className="App">
+             <Nav />
+             <Route exact path="/" render={()=><HomePage user={this.state.user} />} />
+             <Route path="/EmotionalFlash" render={()=><EmotionalFlash user={this.state.user} updateProgress={this.updateProgress} />} />
+          </div>
+        </Router>
+
     );
   }
 }
