@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var NavLink = require('react-router-dom').NavLink;
+import { NavLink } from 'react-router-dom'
 
 export default class Nav extends Component {
 
@@ -20,8 +20,8 @@ export default class Nav extends Component {
 								</NavLink>
 						</div>
 						<div class="navbar-item">
-							<NavLink className="nav-link" activeClassName='active' to="/EmotionalFlash">
-								User
+							<NavLink className="nav-link" activeClassName='active' to="/Login">
+								  Login
 							</NavLink>
 						</div>
 					</div>

@@ -80,3 +80,18 @@
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
+
+#login-box{
+	margin-top: 30px;
+}
+#login-footer{
+	margin-top: 20px;
+}
+
+.nav-link-login{
+	font-size: 14px;
+}
+
+.hero .is-success{
+	background-color: #F2F6FA;
+}
