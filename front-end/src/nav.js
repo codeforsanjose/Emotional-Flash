@@ -12,10 +12,12 @@ export default class Nav extends Component {
 					</div>
 				</div>
 
+
+
 				<div className="navbar-menu">
 					<div className="navbar-end">
 						<div class="navbar-item">
-								<NavLink exact className="nav-link"activeClassName='active' to="/">
+								<NavLink exact className="nav-link" activeClassName='active' to="/">
 									Home
 								</NavLink>
 						</div>

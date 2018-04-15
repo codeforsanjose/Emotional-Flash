@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EmotionalFlash from './emotional-flash.js';
 import HomePage from './homepage.js';
 import Login from './login.js';
+import SignUp from './signup.js';
 import './App.css';
 import 'bulma/css/bulma.css'
 import Nav from './nav.js';
@@ -35,6 +36,7 @@ export default class App extends Component {
              <Route exact path="/" render={()=><HomePage user={this.state.user} />} />
              <Route path="/EmotionalFlash" render={()=><EmotionalFlash user={this.state.user} updateProgress={this.updateProgress} />} />
              <Route path="/Login" render={()=> <Login />} />
+             <Route path="/SignUp" render={() => <SignUp />} />
           </div>
         </Router>
 

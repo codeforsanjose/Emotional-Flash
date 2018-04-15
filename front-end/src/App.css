@@ -92,6 +92,14 @@
 	font-size: 14px;
 }
 
-.hero .is-success{
+#login-hero{
 	background-color: #F2F6FA;
 }
+
+#error-message{
+	color: red;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
