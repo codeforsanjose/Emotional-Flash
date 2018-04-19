@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 import CardGallery from './card-gallery';
-import SadPicture1 from './assets/sad/sad1.jpg';
-import SadPicture2 from './assets/sad/sad2.jpg';
-import HappyPicture1 from './assets/happy/happy1.jpg';
-import HappyPicture2 from './assets/happy/happy2.jpg';
-import AngryPicture1 from './assets/angry/angry1.jpg';
-import AngryPicture2 from './assets/angry/angry2.jpg';
 import { firebaseApp } from './firebase';
 
 // Hardcoded Pictures. TODO: Make Request to backend instead.
@@ -23,26 +17,60 @@ export default class EmotionalFlash extends Component {
       whichCardIsSelected: null, 
       isCorrect: null,
       cardGallery: [],
+      happyPictureURLs: [],
+      sadPictureURLs: [],
+      angryPictureURLs: [],
     }
+
+  }
+
+  queryDatabase = () => {
     const db = firebaseApp.firestore();
-    const emotions = db.collection("imageURL").doc("emotions").collection("angry");
-    
-    var query = emotions.get()
+    const angryEmotions = db.collection("imageURL").doc("emotions").collection("angry");
+    const happyEmotions = db.collection("imageURL").doc("emotions").collection("happy");
+    const sadEmotions = db.collection("imageURL").doc("emotions").collection("sad");
+
+    const sadEmotionsArray = [];
+    const happyEmotionsArray = [];
+    const angryEmotionsArray = [];
+
+    sadEmotions.get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          console.log(doc.id, '=>', doc.data());
+         sadEmotionsArray.push(doc.data().imageURL);
+         this.setState({ sadPictureURLs: sadEmotionsArray });
         });
       }).catch( err => {
         console.log('error' , err);
       })
 
+    happyEmotions.get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+         happyEmotionsArray.push(doc.data().imageURL);
+         this.setState({ happyPictureURLs: happyEmotionsArray });
+        });
+      }).catch( err => {
+        console.log('error' , err);
+      })
+
+    angryEmotions.get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+         angryEmotionsArray.push(doc.data().imageURL);
+         this.setState({ angryPictureURLs: angryEmotionsArray });
+        });
+      }).catch( err => {
+        console.log('error' , err);
+      })
 
   }
 
   randomizeCards = () => {
-      const happyPictures = [HappyPicture1, HappyPicture2]; //hardcoded pictures array
-      const sadPictures = [SadPicture1, SadPicture2];       // hardcoded pictures array
-      const angryPictures = [AngryPicture1, AngryPicture2]; // hardcoded pictures array
+    console.log(this.state);
+      const happyPictures = this.state.happyPictureURLs;
+      const sadPictures = this.state.sadPictureURLs;     
+      const angryPictures = this.state.angryPictureURLs; 
       // Choose a random happy, sad, and angry picture from the arrays of pictures.
       const happyPicture = {
         picture: happyPictures[Math.floor((Math.random() * happyPictures.length))], 
@@ -141,6 +169,7 @@ export default class EmotionalFlash extends Component {
   }
 
   reset = () => {
+    console.log("reset");
     this.generateQuestion();
     this.randomizeCards(); 
     this.setState({
@@ -149,8 +178,16 @@ export default class EmotionalFlash extends Component {
  }
 
   componentWillMount(){
-    this.generateQuestion();
-    this.randomizeCards();
+    this.queryDatabase();
+
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if (this.state.angryPictureURLs !== prevState.angryPictureURLs) {
+      this.generateQuestion();
+      this.randomizeCards();; // the state of something has changed -> execute callback function 
+    } 
+
   }
 
   render() {
