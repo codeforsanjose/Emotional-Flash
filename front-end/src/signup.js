@@ -52,6 +52,13 @@ export default class SignUp extends Component {
 		                  <input class="input is-medium" type="password" placeholder="Retype Password" ref="verifyPassword"></input>
 		                </div>
 	               </div>
+
+	               <label class="checkbox">
+								  <input type="checkbox">
+								  I agree to the <a href="#">terms and conditions</a>
+								  </input>
+								</label>
+
 	               <p id="error-message"> Passwords do not match </p>
 	               <button class="button is-block is-success is-medium is-fullwidth" >Signup</button>
 	 							</form>
@@ -88,7 +95,14 @@ export default class SignUp extends Component {
 		                  <input class="input is-medium" type="password" placeholder="Retype Password" ref="verifyPassword"></input>
 		                </div>
 	               </div>
-	               <button class="button is-block is-success is-medium is-fullwidth" >Signup</button>
+
+
+	               <label class="checkbox">
+								  <input type="checkbox"></input>
+								  <a href="#"> &nbsp; I agree to the terms and conditions</a>
+								</label>
+
+	               <button class="button is-block is-success is-medium is-fullwidth signup-button" >Signup</button>
 	 							</form>
 	 						</div>
 	 					</div>
