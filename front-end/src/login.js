@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { firebaseApp } from './firebase';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import { login, resetPassword } from './auth.js';
 
 export default class Login extends Component {
 	constructor(props){
@@ -9,10 +9,11 @@ export default class Login extends Component {
 	
 	logIn = (event) => {
 		event.preventDefault();
-		firebaseApp.auth().signInWithEmailAndPassword(this.refs.email.value, this.refs.password.value).catch(function(error) {
+		login(this.refs.email.value, this.refs.password.value).catch((error) => {
 			console.log(error.code);
 			console.log(error.message);
 		})
+
 	}
 
 
@@ -27,7 +28,6 @@ export default class Login extends Component {
  						<p class="subitlte has-text-grey">Please login to proceed</p>
  						<div class="box" id="login-box">
  							<form onSubmit={this.logIn}>	
-
 	              <div class="field">
 	                <div class="control">
 	                  <input class="input is-medium" type="email" placeholder="Your Email" ref="email"></input>

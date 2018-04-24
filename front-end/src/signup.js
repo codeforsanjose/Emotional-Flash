@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { firebaseApp } from './firebase';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import { auth, saveUser } from './auth';
 
 export default class SignUp extends Component {
 	constructor(props){
@@ -18,10 +19,7 @@ export default class SignUp extends Component {
 			console.log("Passwords not Matching!");
 			return;
 		}
-		firebaseApp.auth().createUserWithEmailAndPassword(this.refs.email.value, this.refs.password.value).catch(function(error) {
-			console.log(error.code);
-			console.log(error.message);
-		})
+		auth(this.refs.email.value, this.refs.password.value).catch(error => console.log(error));
 	}
 
 	renderSignUpSection = () => {

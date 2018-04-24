@@ -1,3 +1,8 @@
+html, body{
+	background-color: #F0F8FF;
+	height: 100%;
+}
+
 .app{
 	background-color: #cccccc;
 }
@@ -11,6 +16,10 @@
 
 .home-page{
 	margin: 50px 20px 50px 20px;
+}
+
+.cards-section{
+	background-color: #F0F8FF;
 }
 
 .card-gallery{
@@ -50,7 +59,7 @@
 	bottom: 0;
 }
 
-.active{
+.nav-active{
 	border-radius: 100px;
 	padding: 5px 10px 5px 10px;
 	background-color: #1182bb;
@@ -60,10 +69,12 @@
 	font-size: 18px;
 }
 
+
 .nav-link{
 	color: white;
 	margin-right: 14px;
 }
+
 .nav-brand{
 	font-weight: 900;
 	font-size: 18px;
@@ -88,12 +99,64 @@
 #login-box{
 	margin-top: 30px;
 }
+
+#hero-sub{
+  font-size: 25px;
+  color: white;
+}
+
 #login-footer{
 	margin-top: 20px;
 }
 
+.hero-container{
+    background: linear-gradient( rgba(0, 0, 0, .05), rgba(0, 0, 0, 0.35) ), url('http://i.imgur.com/t7OQWpu.jpg');
+    background-position:center top;
+    margin-bottom: 50px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+
+
+#hero-title{
+  font-size: 48px;
+  color: white;
+}
+
+.hero-sub{
+  font-size: 25px;
+  color: white;
+}
+
+#teachers-button, #students-button{
+	margin-left: 20px; margin-right: 20px;
+}
+
+#teachers-button:hover{
+  background-color: #FFD700;
+}
+#students-button:hover{
+  background-color: #32CD32;
+}
+
+.home-page{
+	margin-left: 12%;
+	margin-right: 12%;
+}
+
+.fa-special{
+  font-size: 80px;
+  margin-top: 10px;
+  color: hsl(204, 86%, 53%);
+}
+
 .nav-link-login{
 	font-size: 14px;
+}
+
+#nav-register-link{
+	margin-left: 20px;
 }
 
 #login-hero{

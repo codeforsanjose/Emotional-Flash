@@ -10,4 +10,6 @@ require("firebase/firestore");
     messagingSenderId: "162777006723"
   };
 
-export const firebaseApp = firebase.initializeApp(config);
+export const firebaseApp = firebase.initializeApp(config); 
+export const firebaseAuth = firebaseApp.auth();  // auth
+export const ref = firebaseApp.database().ref(); // db 
