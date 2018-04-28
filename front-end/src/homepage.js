@@ -18,11 +18,8 @@ export default class HomePage extends Component {
 							            A learning platform for Autism.
 							          </h2>
 							          <div id="hero-buttons">
-			               	 		<NavLink exact className="nav-link-login" to="/">
-			               	 			<button class="button is-warning is-medium" id="teachers-button">Teachers</button>
-			               	 		</NavLink> 
 										    	<NavLink exact className="nav-link-login" to="/Dashboard">      	
-										    		<button class="button is-success is-medium" id="students-button">Students</button>
+										    		<button class="button is-success is-medium" id="students-button">Get Started</button>
 										    	</NavLink> 
 							          </div>
 							        </div>
@@ -53,8 +50,8 @@ export default class HomePage extends Component {
 						          </div>
 						          <div class="card-content">
 						            <div class="content">
-						              <h4>Educator Platform</h4>
-						              <p>Autism App provides tools for educators by providing insights into each individual child's learning needs.</p>
+						              <h4>Lorem Ipsum</h4>
+						              <p>Lorem Ipsum Something.</p>
 						              <p><a href="#">Learn more</a></p>
 						            </div>
 						          </div>
