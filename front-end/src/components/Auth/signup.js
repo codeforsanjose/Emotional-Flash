@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { firebaseApp } from './firebase';
+import { firebaseApp } from '../../firebase';
 import { NavLink } from 'react-router-dom';
 import { auth, saveUser } from './auth';
 

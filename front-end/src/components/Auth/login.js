@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { login, resetPassword } from './auth.js';
+import { login, resetPassword } from './auth';
 
 export default class Login extends Component {
 	constructor(props){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardGallery from './card-gallery';
-import { firebaseApp } from './firebase';
+import { firebaseApp } from '../../firebase';
 
 // Hardcoded Pictures. TODO: Make Request to backend instead.
 

@@ -1,4 +1,4 @@
-import { firebaseAuth, ref } from './firebase';
+import { firebaseAuth, ref } from '../../firebase';
 
 export function auth (email, pw) {
   return firebaseAuth.createUserWithEmailAndPassword(email, pw)
