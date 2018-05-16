@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EmotionalFlash from './components/Emotional-flash/emotional-flash';
+import EmotionalFlash from './components/Emotional-flash/emotional-multiple-choice'; //! 
 import Homepage from './components/Homepage/homepage';
 import Dashboard from './components/Dashboard/dashboard';
 import Login from './components/Auth/login';
