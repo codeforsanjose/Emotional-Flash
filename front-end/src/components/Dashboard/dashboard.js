@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 var Link = require('react-router-dom').Link;
 

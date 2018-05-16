@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
-import { logout } from './auth';
+import { logout } from '../Auth/auth';
 
 export default class Nav extends Component {
 
@@ -16,12 +16,12 @@ export default class Nav extends Component {
 
 					<div className="navbar-menu">
 						<div className="navbar-end">
-							<div class="navbar-item">
+							<div className="navbar-item">
 									<NavLink exact className="nav-link" activeClassName='nav-active' to="/">
 										Home
 									</NavLink>
 							</div>
-							<div class="navbar-item">
+							<div className="navbar-item">
 								{
 									this.props.authed 
 									? 

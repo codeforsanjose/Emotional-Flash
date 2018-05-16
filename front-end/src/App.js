@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import EmotionalFlash from './emotional-flash.js';
-import Homepage from './homepage.js';
-import Dashboard from './dashboard.js';
-import Login from './login.js';
-import SignUp from './signup.js';
+import EmotionalFlash from './components/Emotional-flash/emotional-flash';
+import Homepage from './components/Homepage/homepage';
+import Dashboard from './components/Dashboard/dashboard';
+import Login from './components/Auth/login';
+import SignUp from './components/Auth/signup';
 import './App.css';
 import 'bulma/css/bulma.css'
-import Nav from './nav.js';
+import Nav from './components/Nav/nav.js';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { firebaseAuth } from './firebase';
-import { logout } from './auth';
+import { logout } from './components/Auth/auth';
 
 function PublicRoute ({component: Component, authed, ...rest}) {
   return (
