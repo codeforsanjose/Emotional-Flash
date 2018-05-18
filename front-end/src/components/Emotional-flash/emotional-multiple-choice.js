@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Card from './card';
-import Questions from './questions';
 import { firebaseApp } from '../../firebase';
 
 // Hardcoded Pictures. TODO: Make Request to backend instead.
@@ -14,6 +13,7 @@ export default class EmotionalMultipleChoice extends Component {
     super(props);
     this.state = {
       isCorrect: null,
+      
     }
 
   }
@@ -61,14 +61,24 @@ export default class EmotionalMultipleChoice extends Component {
     }
   }
 
+  renderMultipleChoiceAnswers = () => {
+    return ( 
+      <div>
+        <h1> Answer 1 </h1>
+        <h1> Answer 2 </h1>
+        <h1> Answer 2 </h1>
+      </div>
+    )
+  }
+
 
   render() {
     return (
       <div className="emotional-flash">
         <progress style={{ width: '75%' }} className="progress is-success is-large" value={this.props.user.progress} max="100"></progress>
-        <h1 className="title">Which emotion is displayed in the picture?</h1>
-        <Questions />
+        <h1 className="title">Which emotion is shown in the picture?</h1>
         <Card />
+        {this.renderMultipleChoiceAnswers()}
         {this.renderFooterBar()}
       </div>
     );
