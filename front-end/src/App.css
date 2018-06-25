@@ -45,6 +45,10 @@ html, body{
 	border-color: lightblue;
 }
 
+.title{
+	margin-left: 25px;
+}
+
 .level-left{
 	margin-left: 14%;
 }
@@ -69,6 +73,7 @@ html, body{
 .navbar-item{
 	font-size: 18px;
 }
+
 
 
 .nav-link{

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './card';
+import MultipleChoiceAnswers from './multiple-choice-answers';
 import { firebaseApp } from '../../firebase';
 
 // Hardcoded Pictures. TODO: Make Request to backend instead.
@@ -13,62 +14,14 @@ export default class EmotionalMultipleChoice extends Component {
     super(props);
     this.state = {
       isCorrect: null,
-      
+      selectedAnswer: null,
+      answers: ["angry", "happy", "sad"]
     }
 
   }
 
- 
-  renderFooterBar = () => {
-    if (this.state.isCorrect === null){
-      return (
-        <nav className="level">
-          <div className="level-left">
-            <button className="button is-dark is-medium is-rounded is-outlined" onClick={this.checkAnswer}>Skip</button>
-          </div>
-          <div className="level-right">
-            <button className="button is-success is-medium is-rounded" onClick={this.checkAnswer}>Check</button>
-          </div>
-        </nav>
-      );
-
-    }
-    if (this.state.isCorrect === true){
-      let style = { backgroundColor: '#bff199' };
-        return (
-        <nav style={style} className="level">
-          <div className="level-left">
-            <h1 style={{ color: '#23d160'}} class="title">You are correct!</h1>
-          </div>
-          <div className="level-right">
-            <button className="button is-success is-medium is-rounded" onClick={this.reset}>Continue</button>
-          </div>
-        </nav>
-        )
-    }
-    if (this.state.isCorrect === false){
-      let style = { backgroundColor: '#ffd3d1' };
-      return (
-        <nav style={style} className="level">
-          <div className="level-left">
-            <h1 style={{ color: '#ff3860'}} class="title">Incorrect</h1>
-          </div>
-          <div className="level-right">
-            <button className="button is-danger is-medium is-rounded" onClick={this.reset}>Continue</button>
-          </div>
-        </nav>
-      )
-    }
-  }
-
-  renderMultipleChoiceAnswers = () => {
-    return ( 
-      <div>
-        <h1> Answer 1 </h1>
-        <h1> Answer 2 </h1>
-        <h1> Answer 2 </h1>
-      </div>
-    )
+  selectAnswer = (answer) => {
+    this.setState({ selectedAnswer: answer });
   }
 
 
@@ -78,8 +31,7 @@ export default class EmotionalMultipleChoice extends Component {
         <progress style={{ width: '75%' }} className="progress is-success is-large" value={this.props.user.progress} max="100"></progress>
         <h1 className="title">Which emotion is shown in the picture?</h1>
         <Card />
-        {this.renderMultipleChoiceAnswers()}
-        {this.renderFooterBar()}
+        <MultipleChoiceAnswers selectedAnswer={this.state.selectedAnswer} selectAnswer={this.selectAnswer} answers={this.state.answers}/>
       </div>
     );
   }
