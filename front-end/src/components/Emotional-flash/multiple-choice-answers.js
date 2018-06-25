@@ -21,8 +21,7 @@ renderAnswers = () => {
     			/>
     		)}
     	else {
-    		console.log(answer);
-    		console.log(this.props.selectedAnswer);
+
     		return(
     			<MultipleChoiceAnswer 
     				key={index}
