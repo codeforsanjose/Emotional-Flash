@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from './card';
 import MultipleChoiceAnswers from './multiple-choice-answers';
+import CorrectMatch from './correct-match';
 import { firebaseApp } from '../../firebase';
 
 
@@ -11,7 +12,7 @@ export default class EmotionalMultipleChoice extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isCorrect: null,
+      isCorrect: false,
       correctAnswer: null,
       selectedAnswer: null,
       imageURL: null,
@@ -26,12 +27,6 @@ export default class EmotionalMultipleChoice extends Component {
     this.queryDatabaseForImages();
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if (this.state.imagesAndEmotions !== prevState.imagesAndEmotions) {
-      this.randomizeQuestion();
-    }
-  }
-
   queryDatabaseForImages = () => {
      const db = firebaseApp.firestore();
      const allImages = db.collection("imageURL").doc("emotions").collection("all");
@@ -43,15 +38,21 @@ export default class EmotionalMultipleChoice extends Component {
          allImagesArray.push(emotionImageObject);
          this.setState({ imagesAndEmotions: allImagesArray });
         });
-      }).catch( err => {
+      })
+      .then(res => {
+        this.randomizeQuestion();
+      })
+      .catch( err => {
         console.log('error' , err);
       })
   }
 
   randomizeQuestion = () => {
-    const randomIndex = Math.floor((Math.random() * this.state.imagesAndEmotions.length));
-    const url = this.state.imagesAndEmotions[randomIndex].imageURL;
-    this.setState({ imageURL: url })
+    const imagesAndEmotions = this.state.imagesAndEmotions;
+    const randomIndex = Math.floor((Math.random() * imagesAndEmotions.length));
+    const url = imagesAndEmotions[randomIndex].imageURL;
+    const answer = imagesAndEmotions[randomIndex].emotion;
+    this.setState({ imageURL: url, correctAnswer: answer });
   }
 
 
@@ -64,11 +65,8 @@ export default class EmotionalMultipleChoice extends Component {
     this.setState({ selectedAnswer: answer });
   }
 
-
-
-  // Render Function
-  render() {
-    return (
+  renderSection = () => {
+    return this.state.isCorrect === false ? 
       <div className="emotional-flash">
         <progress style={{ width: '75%' }} className="progress is-success is-large" value={this.props.user.progress} max="100"></progress>
         <h1 className="title">Which emotion is shown in the picture?</h1>
@@ -76,7 +74,19 @@ export default class EmotionalMultipleChoice extends Component {
         <MultipleChoiceAnswers selectedAnswer={this.state.selectedAnswer} selectAnswer={this.selectAnswer} answers={this.state.answers}/>
         <button className="button" onClick={this.checkAnswer} >Submit</button>
       </div>
+      :
+      <CorrectMatch />
+  }
+
+  // Render Function
+  render() {
+    return (
+       <div className="emotional-flash">
+        {this.renderSection()}
+       </div>
     );
+    
+
   }
 }
 

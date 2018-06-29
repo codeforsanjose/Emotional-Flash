@@ -187,7 +187,6 @@ export default class EmotionalFlash extends Component {
       this.generateQuestion();
       this.randomizeCards();; // the state of something has changed -> execute callback function 
     } 
-
   }
 
   render() {
