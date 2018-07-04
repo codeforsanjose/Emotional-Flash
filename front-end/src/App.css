@@ -45,6 +45,11 @@ html, body{
 	border-color: lightblue;
 }
 
+#mult-choice-image{
+	width: 220px;
+  height: 200px;
+}
+
 .title{
 	margin-left: 25px;
 }

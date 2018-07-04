@@ -67,6 +67,7 @@ export default class EmotionalMultipleChoice extends Component {
   }
 
   reset = () => {
+    this.randomizeQuestion();
     this.setState({ isCorrect: null })
   }
 
@@ -76,7 +77,7 @@ export default class EmotionalMultipleChoice extends Component {
         <div className="emotional-flash">
           <progress style={{ width: '75%' }} className="progress is-success is-large" value={this.props.user.progress} max="100"></progress>
           <h1 className="title">Which emotion is shown in the picture?</h1>
-          <img src={this.state.imageURL}></img>
+          <img id="mult-choice-image" src={this.state.imageURL}></img>
           <MultipleChoiceAnswers selectedAnswer={this.state.selectedAnswer} selectAnswer={this.selectAnswer} answers={this.state.answers}/>
           <button className="button" onClick={this.checkAnswer} >Submit</button>
         </div>)
