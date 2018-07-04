@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Card from './card';
 import MultipleChoiceAnswers from './multiple-choice-answers';
 import CorrectMatch from './correct-match';
+import IncorrectMatch from './incorrect-match';
 import { firebaseApp } from '../../firebase';
 
 
@@ -12,7 +13,7 @@ export default class EmotionalMultipleChoice extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isCorrect: false,
+      isCorrect: null,
       correctAnswer: null,
       selectedAnswer: null,
       imageURL: null,
@@ -65,17 +66,25 @@ export default class EmotionalMultipleChoice extends Component {
     this.setState({ selectedAnswer: answer });
   }
 
+  reset = () => {
+    this.setState({ isCorrect: null })
+  }
+
   renderSection = () => {
-    return this.state.isCorrect === false ? 
-      <div className="emotional-flash">
-        <progress style={{ width: '75%' }} className="progress is-success is-large" value={this.props.user.progress} max="100"></progress>
-        <h1 className="title">Which emotion is shown in the picture?</h1>
-        <img src={this.state.imageURL}></img>
-        <MultipleChoiceAnswers selectedAnswer={this.state.selectedAnswer} selectAnswer={this.selectAnswer} answers={this.state.answers}/>
-        <button className="button" onClick={this.checkAnswer} >Submit</button>
-      </div>
-      :
-      <CorrectMatch />
+    if (this.state.isCorrect === null)
+      return(
+        <div className="emotional-flash">
+          <progress style={{ width: '75%' }} className="progress is-success is-large" value={this.props.user.progress} max="100"></progress>
+          <h1 className="title">Which emotion is shown in the picture?</h1>
+          <img src={this.state.imageURL}></img>
+          <MultipleChoiceAnswers selectedAnswer={this.state.selectedAnswer} selectAnswer={this.selectAnswer} answers={this.state.answers}/>
+          <button className="button" onClick={this.checkAnswer} >Submit</button>
+        </div>)
+    else if (this.state.isCorrect === true)
+      return <CorrectMatch reset={this.reset} />
+    else if (this.state.isCorrect === false)
+      return <IncorrectMatch reset={this.reset} />
+
   }
 
   // Render Function
@@ -85,7 +94,7 @@ export default class EmotionalMultipleChoice extends Component {
         {this.renderSection()}
        </div>
     );
-    
+
 
   }
 }

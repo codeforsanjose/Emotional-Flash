@@ -10,8 +10,8 @@ export default class CorrectMatch extends Component {
 		return (
 		  <div className="corect-match" >
 		    <h1>You got it!</h1>
-		    <h2> - Explanation? -  </h2>
-        <button className="button" onClick={this.NextQuestion} >Next Question</button>
+		    <h2> - Explanation here -  </h2>
+        <button className="button" onClick={this.props.reset} >Next Question</button>
 		  </div>
 		);
 	}
