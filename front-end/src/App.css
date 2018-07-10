@@ -45,6 +45,12 @@ html, body{
 	border-color: lightblue;
 }
 
+.mult-choice-answer{
+	margin: 30px 10px 30px 30px;
+	width: 100px;
+	height: 100px;
+}
+
 #mult-choice-image{
 	width: 220px;
   height: 200px;

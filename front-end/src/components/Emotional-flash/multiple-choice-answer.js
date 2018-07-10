@@ -12,8 +12,8 @@ export default class MultipleChoiceAnswer extends Component {
 		this.props.isSelected ? style = { border: '5px solid lightGreen' } : style = {};
 
 		return (
-		  <div className="card" >
-		  	<h1 style={style} onClick={this.handleClick}>{this.props.answer}</h1>
+		  <div style={style} className="mult-choice-answer button" >
+		  	<h1 onClick={thisn.handleClick}>{this.props.answer}</h1>
 		  </div>
 		);
 	}

@@ -82,9 +82,9 @@ export default class EmotionalMultipleChoice extends Component {
           <button className="button" onClick={this.checkAnswer} >Submit</button>
         </div>)
     else if (this.state.isCorrect === true)
-      return <CorrectMatch reset={this.reset} />
+      return <CorrectMatch reset={this.reset} imageURL={this.state.imageURL} />
     else if (this.state.isCorrect === false)
-      return <IncorrectMatch reset={this.reset} />
+      return <IncorrectMatch reset={this.reset} imageURL={this.state.imageURL} />
 
   }
 
