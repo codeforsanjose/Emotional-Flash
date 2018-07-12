@@ -13,7 +13,7 @@ export default class MultipleChoiceAnswer extends Component {
 
 		return (
 		  <div style={style} className="mult-choice-answer button" >
-		  	<h1 onClick={thisn.handleClick}>{this.props.answer}</h1>
+		  	<h1 onClick={this.handleClick}>{this.props.answer}</h1>
 		  </div>
 		);
 	}
