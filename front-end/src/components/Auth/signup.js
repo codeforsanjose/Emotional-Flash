@@ -7,7 +7,8 @@ export default class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signUpError: ''
+      signUpError: '',
+      isLoading: false
     };
   }
 
@@ -19,14 +20,19 @@ export default class SignUp extends Component {
       console.log(signUpError);
       return;
     }
-    auth(this.refs.email.value, this.refs.password.value).catch(error => {
-      console.log(error);
-      this.setState({ signUpError: error.message });
-    });
+    this.setState({ isLoading: true });
+    auth(this.refs.email.value, this.refs.password.value)
+      .catch(error => {
+        console.log(error);
+        this.setState({ signUpError: error.message });
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
   };
 
   renderSignUpSection = () => {
-    const { signUpError } = this.state;
+    const { signUpError, isLoading } = this.state;
 
     return (
       <section class="hero is-fullheight" id="login-hero">
@@ -85,7 +91,13 @@ export default class SignUp extends Component {
 
                   {signUpError && <p id="error-message">{signUpError}</p>}
 
-                  <button class="button is-block is-success is-medium is-fullwidth">Signup</button>
+                  <button
+                    class={`button is-block is-success is-medium is-fullwidth ${
+                      isLoading ? 'is-loading' : ''
+                    }`}
+                  >
+                    Signup
+                  </button>
                 </form>
               </div>
             </div>
