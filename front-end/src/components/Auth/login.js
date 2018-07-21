@@ -5,6 +5,9 @@ import { login, resetPassword } from './auth';
 export default class Login extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      hasLoginError: false
+    };
   }
 
   logIn = event => {
@@ -12,10 +15,13 @@ export default class Login extends Component {
     login(this.refs.email.value, this.refs.password.value).catch(error => {
       console.log(error.code);
       console.log(error.message);
+      this.setState({ hasLoginError: true });
     });
   };
 
   renderLoginPage = () => {
+    const { hasLoginError } = this.state;
+
     return (
       <section class="hero is-fullheight" id="login-hero">
         <div class="hero-body">
@@ -48,6 +54,10 @@ export default class Login extends Component {
                       />
                     </div>
                   </div>
+
+                  {hasLoginError && (
+                    <p class="is-size-6 has-text-danger">The email or password is incorrect.</p>
+                  )}
 
                   <button class="button is-block is-info is-medium is-fullwidth">Login</button>
 
