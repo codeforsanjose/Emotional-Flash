@@ -6,7 +6,7 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasLoginError: false
+      loginError: ''
     };
   }
 
@@ -15,12 +15,12 @@ export default class Login extends Component {
     login(this.refs.email.value, this.refs.password.value).catch(error => {
       console.log(error.code);
       console.log(error.message);
-      this.setState({ hasLoginError: true });
+      this.setState({ loginError: error.message });
     });
   };
 
   renderLoginPage = () => {
-    const { hasLoginError } = this.state;
+    const { loginError } = this.state;
 
     return (
       <section class="hero is-fullheight" id="login-hero">
@@ -55,8 +55,8 @@ export default class Login extends Component {
                     </div>
                   </div>
 
-                  {hasLoginError && (
-                    <p class="is-size-6 has-text-danger login-error mb-3">The email or password is incorrect.</p>
+                  {loginError && (
+                    <p class="is-size-6 has-text-danger login-error mb-3">{loginError}</p>
                   )}
 
                   <button class="button is-block is-info is-medium is-fullwidth">Login</button>
