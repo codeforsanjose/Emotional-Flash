@@ -22,7 +22,7 @@ export default class SignUp extends Component {
   };
 
   renderSignUpSection = () => {
-    return this.state.NotMatchingPasswords ? (
+    return (
       <section class="hero is-fullheight" id="login-hero">
         <div class="hero-body">
           <div class="container has-text-centered">
@@ -37,6 +37,7 @@ export default class SignUp extends Component {
                         type="email"
                         placeholder="Your Email"
                         ref="email"
+                        required
                       />
                     </div>
                   </div>
@@ -48,6 +49,7 @@ export default class SignUp extends Component {
                         type="password"
                         placeholder="Your Password"
                         ref="password"
+                        required
                       />
                     </div>
                   </div>
@@ -59,73 +61,27 @@ export default class SignUp extends Component {
                         type="password"
                         placeholder="Retype Password"
                         ref="verifyPassword"
+                        required
                       />
                     </div>
                   </div>
 
-                  <label class="checkbox">
-                    <input type="checkbox">
-                      I agree to the <a href="#">terms and conditions</a>
-                    </input>
-                  </label>
+                  <div class="field">
+                    <div class="control">
+                      <label class="checkbox">
+                        <input type="checkbox" class="checkbox mr-3" required />
+                        <span>
+                          I agree to the <a href="#">terms and conditions</a>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
 
-                  <p id="error-message"> Passwords do not match </p>
+                  {this.state.NotMatchingPasswords && (
+                    <p id="error-message"> Passwords do not match </p>
+                  )}
+
                   <button class="button is-block is-success is-medium is-fullwidth">Signup</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    ) : (
-      <section class="hero is-fullheight" id="login-hero">
-        <div class="hero-body">
-          <div class="container has-text-centered">
-            <div class="column is-4 is-offset-4">
-              <h3 class="title has-text-grey">Sign Up</h3>
-              <div class="box" id="login-box">
-                <form onSubmit={this.signUp}>
-                  <div class="field">
-                    <div class="control">
-                      <input
-                        class="input is-medium"
-                        type="email"
-                        placeholder="Your Email"
-                        ref="email"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <div class="control">
-                      <input
-                        class="input is-medium"
-                        type="password"
-                        placeholder="Your Password"
-                        ref="password"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <div class="control">
-                      <input
-                        class="input is-medium"
-                        type="password"
-                        placeholder="Retype Password"
-                        ref="verifyPassword"
-                      />
-                    </div>
-                  </div>
-
-                  <label class="checkbox">
-                    <input type="checkbox" />
-                    <a href="#"> &nbsp; I agree to the terms and conditions</a>
-                  </label>
-
-                  <button class="button is-block is-success is-medium is-fullwidth signup-button">
-                    Signup
-                  </button>
                 </form>
               </div>
             </div>
