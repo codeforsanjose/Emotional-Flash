@@ -6,21 +6,27 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginError: ''
+      loginError: '',
+      isLoading: false
     };
   }
 
   logIn = event => {
     event.preventDefault();
-    login(this.refs.email.value, this.refs.password.value).catch(error => {
-      console.log(error.code);
-      console.log(error.message);
-      this.setState({ loginError: error.message });
-    });
+    this.setState({ isLoading: true });
+    login(this.refs.email.value, this.refs.password.value)
+      .catch(error => {
+        console.log(error.code);
+        console.log(error.message);
+        this.setState({ loginError: error.message });
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
   };
 
   renderLoginPage = () => {
-    const { loginError } = this.state;
+    const { loginError, isLoading } = this.state;
 
     return (
       <section class="hero is-fullheight" id="login-hero">
@@ -59,7 +65,13 @@ export default class Login extends Component {
                     <p class="is-size-6 has-text-danger login-error mb-3">{loginError}</p>
                   )}
 
-                  <button class="button is-block is-info is-medium is-fullwidth">Login</button>
+                  <button
+                    class={`button is-block is-info is-medium is-fullwidth ${
+                      isLoading ? 'is-loading' : ''
+                    }`}
+                  >
+                    Login
+                  </button>
 
                   <p class="has-text-grey" id="login-footer">
                     <NavLink exact className="nav-link-login" activeClassName="active" to="/SignUp">
