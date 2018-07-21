@@ -30,13 +30,13 @@ export default class Login extends Component {
  							<form onSubmit={this.logIn}>	
 	              <div class="field">
 	                <div class="control">
-	                  <input class="input is-medium" type="email" placeholder="Your Email" ref="email"></input>
+	                  <input class="input is-medium" type="email" placeholder="Your Email" ref="email" required></input>
 	                </div>
               	</div>
 
 	             <div class="field">
 	                <div class="control">
-	                  <input class="input is-medium" type="password" placeholder="Your Password" ref="password"></input>
+	                  <input class="input is-medium" type="password" placeholder="Your Password" ref="password" required></input>
 	                </div>
                </div>
 
