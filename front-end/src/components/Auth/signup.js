@@ -7,21 +7,27 @@ export default class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      NotMatchingPasswords: false
+      signUpError: ''
     };
   }
 
   signUp = event => {
     event.preventDefault();
     if (this.refs.password.value !== this.refs.verifyPassword.value) {
-      this.setState({ NotMatchingPasswords: true });
-      console.log('Passwords not Matching!');
+      const signUpError = 'Passwords not Matching!';
+      this.setState({ signUpError });
+      console.log(signUpError);
       return;
     }
-    auth(this.refs.email.value, this.refs.password.value).catch(error => console.log(error));
+    auth(this.refs.email.value, this.refs.password.value).catch(error => {
+      console.log(error);
+      this.setState({ signUpError: error.message });
+    });
   };
 
   renderSignUpSection = () => {
+    const { signUpError } = this.state;
+
     return (
       <section class="hero is-fullheight" id="login-hero">
         <div class="hero-body">
@@ -77,9 +83,7 @@ export default class SignUp extends Component {
                     </div>
                   </div>
 
-                  {this.state.NotMatchingPasswords && (
-                    <p id="error-message"> Passwords do not match </p>
-                  )}
+                  {signUpError && <p id="error-message">{signUpError}</p>}
 
                   <button class="button is-block is-success is-medium is-fullwidth">Signup</button>
                 </form>
