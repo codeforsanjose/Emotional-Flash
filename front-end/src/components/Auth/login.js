@@ -56,7 +56,7 @@ export default class Login extends Component {
                   </div>
 
                   {hasLoginError && (
-                    <p class="is-size-6 has-text-danger">The email or password is incorrect.</p>
+                    <p class="is-size-6 has-text-danger login-error mb-3">The email or password is incorrect.</p>
                   )}
 
                   <button class="button is-block is-info is-medium is-fullwidth">Login</button>
