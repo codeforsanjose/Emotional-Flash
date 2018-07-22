@@ -18,7 +18,8 @@ export default class EmotionalMultipleChoice extends Component {
       selectedAnswer: null,
       imageURL: null,
       imagesAndEmotions: [],
-      answers: ["angry", "happy", "sad"]
+      answers: ["angry", "happy", "sad"],
+      progress: 0,
     }
   }
 
@@ -58,8 +59,23 @@ export default class EmotionalMultipleChoice extends Component {
 
 
   // Helper Functions
+
+  updateProgress = (value) => {
+      if ((this.state.progress + value) <= 0 || (this.state.progress + value ) >= 100 ){
+        return;
+      }
+      this.setState({
+          progress: this.state.progress + value,
+      })
+  }
+
   checkAnswer = () => {
-    this.state.correctAnswer === this.state.selectedAnswer ? this.setState({ isCorrect: true }) : this.setState({ isCorrect: false });
+    if (this.state.correctAnswer === this.state.selectedAnswer){
+      this.setState({ isCorrect: true })
+      this.updateProgress(10);
+    } else {
+      this.setState({ isCorrect: false })
+    }
   }
 
   selectAnswer = (answer) => {
@@ -75,7 +91,7 @@ export default class EmotionalMultipleChoice extends Component {
     if (this.state.isCorrect === null)
       return(
         <div className="emotional-flash">
-          <progress style={{ width: '75%' }} className="progress is-success is-large" value={this.props.user.progress} max="100"></progress>
+          <progress style={{ width: '75%' }} className="progress is-success is-large" value={this.state.progress} max="100"></progress>
           <h1 className="title">Which emotion is shown in the picture?</h1>
           <img id="mult-choice-image" src={this.state.imageURL}></img>
           <MultipleChoiceAnswers selectedAnswer={this.state.selectedAnswer} selectAnswer={this.selectAnswer} answers={this.state.answers}/>

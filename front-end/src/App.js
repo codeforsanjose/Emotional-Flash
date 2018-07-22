@@ -38,7 +38,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       authed: false,
-      user: {userid: "fred", progress: 0}
+      user: {userid: "fred", progress: 0},
     };
   }
 

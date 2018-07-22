@@ -20,7 +20,7 @@ export default class Login extends Component {
         console.log(error.message);
         this.setState({ loginError: error.message });
       })
-      .finally(() => {
+      .then(() => {
         this.setState({ isLoading: false });
       });
   };
