@@ -1,8 +1,9 @@
+// THIS COMPONENT IS CURRENTLY NOT BEING USED. It is an image-multiple choice version of emotional-flash.
+
 import React, { Component } from 'react';
 import CardGallery from './card-gallery';
 import { firebaseApp } from '../../firebase';
 
-// Hardcoded Pictures. TODO: Make Request to backend instead.
 
 
 export default class EmotionalFlash extends Component {

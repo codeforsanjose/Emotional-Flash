@@ -70,6 +70,7 @@ export default class App extends Component {
           <div className="App">
              <Nav authed={this.state.authed} />
              <Route exact path="/" render={()=><Homepage />} />
+             <Route path="*" render={()=><Homepage />} />
              <PrivateRoute authed={this.state.authed} user={this.state.user} path="/Dashboard" component={Dashboard} />
              <Route path="/EmotionalFlash" render={()=><EmotionalFlash user={this.state.user} updateProgress={this.updateProgress} />} />
              <PublicRoute authed={this.state.authed} path="/Login" component={Login} />
