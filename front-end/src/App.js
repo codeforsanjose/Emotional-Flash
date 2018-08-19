@@ -62,7 +62,9 @@ export default class App extends Component {
   }
 
 
-//             <Route path="/EmotionalFlash" render={()=><EmotionalFlash user={this.state.user} updateProgress={this.updateProgress} />} />
+
+// Use this route for the three card multiple choice version of emotional-flash
+//   <Route path="/EmotionalFlash" render={()=><EmotionalFlash user={this.state.user} updateProgress={this.updateProgress} />} />
 
   render() {
     return (
@@ -70,7 +72,7 @@ export default class App extends Component {
           <div className="App">
              <Nav authed={this.state.authed} />
              <Route exact path="/" render={()=><Homepage />} />
-             <Route path="*" render={()=><Homepage />} />
+             <Route path={process.env.PUBLIC_URL + '/'} render={()=><Homepage />} />
              <PrivateRoute authed={this.state.authed} user={this.state.user} path="/Dashboard" component={Dashboard} />
              <Route path="/EmotionalFlash" render={()=><EmotionalFlash user={this.state.user} updateProgress={this.updateProgress} />} />
              <PublicRoute authed={this.state.authed} path="/Login" component={Login} />
