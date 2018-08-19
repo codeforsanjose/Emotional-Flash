@@ -50,8 +50,8 @@ export default class HomePage extends Component {
 						          </div>
 						          <div class="card-content">
 						            <div class="content">
-						              <h4>Lorem Ipsum</h4>
-						              <p>Lorem Ipsum Something.</p>
+						              <h4>Free to Use</h4>
+						              <p>We believe in equal and accessible education.</p>
 						              <p><a href="#">Learn more</a></p>
 						            </div>
 						          </div>

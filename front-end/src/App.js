@@ -62,19 +62,6 @@ export default class App extends Component {
   }
 
 
-  updateProgress = (value) => {
-      if ((this.state.user.progress + value) <= 0 || (this.state.user.progress + value ) >= 100 ){
-        return;
-      }
-      this.setState({
-        user: {
-          userid: this.state.user.userid,
-          progress: this.state.user.progress + value,
-        }
-      })
-  }
-
-
 //             <Route path="/EmotionalFlash" render={()=><EmotionalFlash user={this.state.user} updateProgress={this.updateProgress} />} />
 
   render() {
