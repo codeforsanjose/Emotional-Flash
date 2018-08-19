@@ -17,7 +17,7 @@ export default class Nav extends Component {
 					<div className="navbar-menu">
 						<div className="navbar-end">
 							<div className="navbar-item">
-									<NavLink exact className="nav-link" activeClassName='nav-active' to="/">
+									<NavLink exact className="nav-link" activeClassName='nav-active' to={process.env.PUBLIC_URL + '/'} >
 										Home
 									</NavLink>
 							</div>
