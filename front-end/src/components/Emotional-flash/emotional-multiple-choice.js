@@ -70,6 +70,10 @@ export default class EmotionalMultipleChoice extends Component {
   }
 
   checkAnswer = () => {
+    if (this.state.selectedAnswer === null){
+      return;
+    }
+
     if (this.state.correctAnswer === this.state.selectedAnswer){
       this.setState({ isCorrect: true })
       this.updateProgress(10);
