@@ -26,7 +26,7 @@ export default class SignUp extends Component {
         console.log(error);
         this.setState({ signUpError: error.message });
       })
-      .finally(() => {
+      .then(() => {
         this.setState({ isLoading: false });
       });
   };
